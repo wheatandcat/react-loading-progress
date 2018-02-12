@@ -4,8 +4,9 @@ import styled from "styled-components"
 
 const Plain = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
-  transition: all 700ms 0s ease;
+  transition: opacity 800ms 0s ease;
   position: absolute;
+  z-index: 3;
 `
 
 class Fade extends Component {

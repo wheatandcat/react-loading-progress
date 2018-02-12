@@ -7,6 +7,9 @@ import Loading from "./Loading"
 import Progress from "./Progress/Connected"
 import Ripple from "./Ripple"
 import Fade from "./Fade"
+import Rolling from "./Rolling.svg"
+import Bubble from "./Bubble.gif"
+import Fountain from "./Fountain.gif"
 
 const CustomTable = styled.div`
   table {
@@ -41,7 +44,7 @@ const CustomTable = styled.div`
 storiesOf("Fade", module)
   .addDecorator(withKnobs)
   .add("Fade", () => (
-    <Fade width={300} height={200} fadeOut={boolean("fadeOut", false)} />
+    <Fade width={300} height={200} fadeOut={boolean("fadeOut", true)} />
   ))
 
 storiesOf("Ripple", module)
@@ -51,7 +54,7 @@ storiesOf("Ripple", module)
 storiesOf("Loading", module)
   .addDecorator(withKnobs)
   .add("Loading", () => (
-    <Loading loading={boolean("loading", false)}>
+    <Loading loading={boolean("loading", true)}>
       <Progress>
         <CustomTable>
           <table>
@@ -80,8 +83,8 @@ storiesOf("Loading", module)
     </Loading>
   ))
   .add("Loading with mask", () => (
-    <Loading loading={boolean("loading", false)}>
-      <Progress background="rgba(0, 0, 0, 0.3)">
+    <Loading loading={boolean("loading", true)}>
+      <Progress mask>
         <CustomTable>
           <table>
             <thead>
@@ -109,7 +112,7 @@ storiesOf("Loading", module)
     </Loading>
   ))
   .add("item Loading", () => (
-    <Loading loading={boolean("loading", false)}>
+    <Loading loading={boolean("loading", true)}>
       <CustomTable>
         <table>
           <thead>
@@ -123,14 +126,14 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left">foo </Progress>
+                <Progress placement="left">foo</Progress>
               </td>
               <td>baz</td>
             </tr>
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left">bar </Progress>
+                <Progress placement="left">bar</Progress>
               </td>
               <td>baz</td>
             </tr>
@@ -140,7 +143,7 @@ storiesOf("Loading", module)
     </Loading>
   ))
   .add("Loading with noChild", () => (
-    <Loading loading={boolean("loading", false)}>
+    <Loading loading={boolean("loading", true)}>
       <CustomTable>
         <table>
           <thead>
@@ -154,7 +157,7 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left" noChild size={1.5}>
+                <Progress placement="left" noChild>
                   foo
                 </Progress>
               </td>
@@ -163,7 +166,7 @@ storiesOf("Loading", module)
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left" noChild size={1.5}>
+                <Progress placement="left" noChild>
                   bar
                 </Progress>
               </td>
@@ -189,7 +192,7 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left" noChild size={1.5} ripple>
+                <Progress placement="left" noChild ripple>
                   foo
                 </Progress>
               </td>
@@ -198,7 +201,7 @@ storiesOf("Loading", module)
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left" noChild size={1.5} ripple>
+                <Progress placement="left" noChild ripple>
                   bar
                 </Progress>
               </td>
@@ -208,4 +211,144 @@ storiesOf("Loading", module)
         </table>
       </CustomTable>
     </Loading>
+  ))
+  .add("Default loading", () => (
+    <div
+      style={{
+        width: "600px",
+        height: "200px",
+        border: "medium solid #eee",
+      }}
+    >
+      <Loading loading={boolean("loading", true)}>
+        <Progress size={0.75} />
+      </Loading>
+    </div>
+  ))
+
+storiesOf("Example customize icon", module)
+  .addDecorator(withKnobs)
+  .add("Rolling", () => (
+    <Loading
+      icon={<img src={Rolling} alt="loading" />}
+      loading={boolean("loading", true)}
+    >
+      <Progress>
+        <CustomTable>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>foo</td>
+                <td>baz</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>bar</td>
+                <td>baz</td>
+              </tr>
+            </tbody>
+          </table>
+        </CustomTable>
+      </Progress>
+    </Loading>
+  ))
+  .add("Bubble", () => (
+    <Loading
+      icon={<img src={Bubble} alt="loading" />}
+      loading={boolean("loading", true)}
+    >
+      <CustomTable>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <Progress placement="left" noChild size={1}>
+                  foo
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <Progress placement="left" noChild size={1}>
+                  bar
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+          </tbody>
+        </table>
+      </CustomTable>
+    </Loading>
+  ))
+  .add("Fountain", () => (
+    <Loading
+      icon={<img src={Fountain} alt="loading" />}
+      loading={boolean("loading", true)}
+    >
+      <CustomTable>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <Progress placement="left" noChild size={0.75} widthSize={6}>
+                  foo
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <Progress placement="left" noChild size={0.75} widthSize={6}>
+                  bar
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+          </tbody>
+        </table>
+      </CustomTable>
+    </Loading>
+  ))
+  .add("Default Fountain", () => (
+    <div
+      style={{
+        width: "600px",
+        height: "200px",
+        border: "medium solid #eee",
+      }}
+    >
+      <Loading
+        icon={<img src={Fountain} alt="loading" />}
+        loading={boolean("loading", true)}
+      >
+        <Progress size={0.5} heightSize={0.4} widthSize={3} />
+      </Loading>
+    </div>
   ))

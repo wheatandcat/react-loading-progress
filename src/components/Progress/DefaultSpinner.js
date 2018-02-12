@@ -1,31 +1,38 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import styled from "styled-components"
 
 const Load = styled.div`
   display: flex;
   justify-content: ${props => props.placement};
   align-items: center;
-  position: absolute;
   z-index: 2;
 `
 
 export default ({
-  component,
-  iconHeight,
-  iconWidth,
-  placement,
-  height,
   width,
+  height,
+  iconSize,
+  iconHeightSize,
+  iconWidthSize,
+  component,
+  placement,
 }) => {
+  if (width === null || height === null) {
+    return null
+  }
+
   const style = {
-    width: `${width}px`,
-    height: `${height}px`,
+    width: "100%",
+    height: "100%",
   }
 
   const imageStyle = {
-    width: `${iconWidth}px`,
-    height: `${iconHeight}px`,
+    width: "100%",
+    height: "100%",
   }
+
+  const size = width > height ? height : width
 
   const Icon = styled.div`
     display: flex;
@@ -33,8 +40,8 @@ export default ({
     align-items: center;
 
     > * {
-      width: ${iconWidth * 0.8}px;
-      height: ${iconHeight * 0.8}px;
+      width: ${size * iconSize * 0.8 * iconWidthSize}px;
+      height: ${size * iconSize * 0.8 * iconHeightSize}px;
     }
   `
 

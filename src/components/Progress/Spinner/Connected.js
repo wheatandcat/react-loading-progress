@@ -4,16 +4,20 @@ import Spinner from "./Spinner"
 
 export default class extends Component {
   static defaultProps = {
-    src: null,
-    srcSize: 1,
+    component: null,
+    iconSize: 1,
+    iconHeightSize: 1,
+    iconWidthSize: 1,
     placement: "center",
     height: null,
     width: null,
   }
 
   static propTypes = {
-    src: PropTypes.any,
-    srcSize: PropTypes.number,
+    component: PropTypes.any,
+    iconSize: PropTypes.number,
+    iconHeightSize: PropTypes.number,
+    iconWidthSize: PropTypes.number,
     placement: PropTypes.string,
     height: PropTypes.number,
     width: PropTypes.number,
@@ -31,8 +35,9 @@ export default class extends Component {
 
     return (
       <Spinner
-        src={this.props.src}
-        srcSize={size * this.props.srcSize}
+        component={this.props.component}
+        iconHeight={size * this.props.iconSize * this.props.iconHeightSize}
+        iconWidth={size * this.props.iconSize * this.props.iconWidthSize}
         placement={this.props.placement}
         height={this.props.height}
         width={this.props.width}
