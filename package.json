@@ -1,0 +1,42 @@
+{
+  "name": "react-loading-progress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wheatandcat/react-loading-progress.git"
+  },
+  "author": "wheatandcat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wheatandcat/react-loading-progress/issues"
+  },
+  "homepage": "https://github.com/wheatandcat/react-loading-progress#readme",
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.11",
+    "@storybook/addon-knobs": "^3.3.11",
+    "@storybook/addon-options": "^3.3.11",
+    "@storybook/cli": "^3.3.11",
+    "@storybook/react": "^3.3.12",
+    "@storybook/storybook-deployer": "^2.2.0",
+    "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__react": "^3.0.6",
+    "babel-preset-react-app": "^3.1.1",
+    "parcel-bundler": "^1.5.1",
+    "prettier": "^1.10.2",
+    "npm-run-all": "^4.1.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "styled-components": "^3.1.6"
+  }
+}
