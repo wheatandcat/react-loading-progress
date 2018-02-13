@@ -35,6 +35,8 @@ export default ({
     > * {
       width: ${iconWidth * 0.8}px;
       height: ${iconHeight * 0.8}px;
+      max-width: 100px;
+      max-height: 100px;
     }
   `
 

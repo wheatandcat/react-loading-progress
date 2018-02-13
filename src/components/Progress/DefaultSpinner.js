@@ -42,6 +42,8 @@ export default ({
     > * {
       width: ${size * iconSize * 0.8 * iconWidthSize}px;
       height: ${size * iconSize * 0.8 * iconHeightSize}px;
+      max-width: 100px;
+      max-height: 100px;
     }
   `
 

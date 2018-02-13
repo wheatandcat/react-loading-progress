@@ -17,6 +17,8 @@ const Main = styled.div`
   z-index: 1;
 `
 
+var teget = null
+
 export default class extends Component {
   state = {
     height: 24,
@@ -158,7 +160,15 @@ export default class extends Component {
           width={this.state.width}
         />
         {!this.props.noChild ? (
-          <Main ref="main">{this.props.children}</Main>
+          <div
+            ref="main"
+            style={{
+              opacity: "0.25",
+              zIndex: 1,
+            }}
+          >
+            {this.props.children}
+          </div>
         ) : (
           <div
             style={{
