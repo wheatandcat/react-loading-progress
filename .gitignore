@@ -9,6 +9,7 @@
 # production
 /dist
 /storybook-static
+/examples-dist
 
 # misc
 .DS_Store

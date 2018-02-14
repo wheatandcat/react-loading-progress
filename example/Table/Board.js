@@ -9,13 +9,25 @@ const Paper = styled(MuiPaper)`
 `
 
 const Button = styled(MuiButton)`
-  margin: 1rem 0 !important;
+  margin: 1rem !important;
 `
 
-export default ({ children, onAdd }) => (
+export default ({ children, onAdd, onUpdate, onError, onUpdateError }) => (
   <Paper>
     <Button variant="raised" color="secondary" onClick={onAdd}>
       add item
+    </Button>
+
+    <Button variant="raised" color="primary" onClick={onUpdate}>
+      update status
+    </Button>
+
+    <Button variant="raised" onClick={onError}>
+      Error!!
+    </Button>
+
+    <Button variant="raised" onClick={onUpdateError}>
+      update status Error!!
     </Button>
     <Divider />
     {children}

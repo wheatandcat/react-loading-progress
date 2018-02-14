@@ -12,7 +12,6 @@ const Root = styled.div`
 
 const Curled = styled.div`
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.3);
   transition: all 700ms 0s ease;
 `
 
@@ -27,12 +26,14 @@ class Ripple extends Component {
     placement: "center",
     width: null,
     height: null,
+    error: false,
   }
 
   static propTypes = {
     placement: PropTypes.string,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    error: PropTypes.bool,
   }
 
   componentDidMount() {
@@ -71,6 +72,9 @@ class Ripple extends Component {
       height: `${this.state.size}px`,
       width: `${this.state.size}px`,
       opacity: this.state.opacity,
+      backgroundColor: this.props.error
+        ? "rgba(255, 0, 0, 0.3)"
+        : "rgba(0, 0, 0, 0.3)",
     }
 
     return (

@@ -11,6 +11,8 @@ export default class extends Component {
     placement: "center",
     height: null,
     width: null,
+    maxHeight: 100,
+    maxWidth: 100,
   }
 
   static propTypes = {
@@ -21,6 +23,8 @@ export default class extends Component {
     placement: PropTypes.string,
     height: PropTypes.number,
     width: PropTypes.number,
+    maxHeight: PropTypes.number,
+    maxWidth: PropTypes.number,
   }
 
   render() {
@@ -41,6 +45,8 @@ export default class extends Component {
         placement={this.props.placement}
         height={this.props.height}
         width={this.props.width}
+        maxHeight={this.props.maxHeight}
+        maxWidth={this.props.maxWidth}
       />
     )
   }

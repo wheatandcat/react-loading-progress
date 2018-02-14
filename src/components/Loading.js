@@ -6,27 +6,35 @@ export default class extends Component {
   static defaultProps = {
     loading: false,
     icon: null,
+    error: false,
   }
 
   static propTypes = {
     loading: PropTypes.bool,
     icon: PropTypes.any,
+    error: PropTypes.bool,
   }
 
   static childContextTypes = {
     isLoad: PropTypes.func,
     icon: PropTypes.func,
+    isError: PropTypes.func,
   }
 
   getChildContext() {
     return {
       isLoad: this.isLoad,
       icon: this.getIcon,
+      isError: this.isError,
     }
   }
 
   isLoad = () => {
     return this.props.loading
+  }
+
+  isError = () => {
+    return this.props.error
   }
 
   getIcon = () => {

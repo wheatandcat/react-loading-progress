@@ -8,8 +8,8 @@ import Progress from "./Progress/Connected"
 import Ripple from "./Ripple"
 import Fade from "./Fade"
 import Rolling from "./Rolling.svg"
-import Bubble from "./Bubble.gif"
-import Fountain from "./Fountain.gif"
+import Bubble from "./Bubble.svg"
+import Fountain from "./Fountain.svg"
 
 const CustomTable = styled.div`
   table {
@@ -111,8 +111,43 @@ storiesOf("Loading", module)
       </Progress>
     </Loading>
   ))
+  .add("Loading with error", () => (
+    <Loading
+      loading={boolean("loading", false)}
+      error={boolean("error", false)}
+    >
+      <Progress>
+        <CustomTable>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>foo</td>
+                <td>baz</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>bar</td>
+                <td>baz</td>
+              </tr>
+            </tbody>
+          </table>
+        </CustomTable>
+      </Progress>
+    </Loading>
+  ))
   .add("item Loading", () => (
-    <Loading loading={boolean("loading", true)}>
+    <Loading
+      loading={boolean("loading", false)}
+      error={boolean("error", false)}
+    >
       <CustomTable>
         <table>
           <thead>
@@ -126,14 +161,26 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left">foo</Progress>
+                <Progress
+                  placement="left"
+                  errorNoChild
+                  errorText="Error!! update"
+                >
+                  foo
+                </Progress>
               </td>
               <td>baz</td>
             </tr>
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left">bar</Progress>
+                <Progress
+                  placement="left"
+                  errorNoChild
+                  errorText="Error!! update"
+                >
+                  bar
+                </Progress>
               </td>
               <td>baz</td>
             </tr>
@@ -202,6 +249,41 @@ storiesOf("Loading", module)
               <td>2</td>
               <td>
                 <Progress placement="left" noChild ripple>
+                  bar
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+          </tbody>
+        </table>
+      </CustomTable>
+    </Loading>
+  ))
+  .add("Update", () => (
+    <Loading loading={boolean("loading", false)}>
+      <CustomTable>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <Progress placement="left" noChild update ripple>
+                  foo
+                </Progress>
+              </td>
+              <td>baz</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <Progress placement="left" noChild update ripple>
                   bar
                 </Progress>
               </td>
@@ -348,7 +430,7 @@ storiesOf("Example customize icon", module)
         icon={<img src={Fountain} alt="loading" />}
         loading={boolean("loading", true)}
       >
-        <Progress size={0.5} heightSize={0.4} widthSize={3} />
+        <Progress size={0.5} heightSize={0.2} widthSize={3.5} />
       </Loading>
     </div>
   ))

@@ -1,5 +1,8 @@
 import React from "react"
 import styled from "styled-components"
+import Button from "material-ui/Button"
+import Table, { Thead, Tbody, Tr, Th, Td } from "react-row-select-table"
+import Loading, { Progress } from "../../src/"
 
 const CustomTable = styled.div`
   table {
@@ -30,25 +33,31 @@ const CustomTable = styled.div`
     }
   }
 `
-export default ({ items }) => (
-  <CustomTable>
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map(({ id, name, status }) => (
-          <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{status}</td>
+export default ({ items, updateState, errorUpdateState }) => (
+  <Loading loading={updateState} error={errorUpdateState}>
+    <CustomTable>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>status</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </CustomTable>
+        </thead>
+        <tbody>
+          {items.map(({ id, name, status }) => (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{name}</td>
+              <td>
+                <Progress noChild update ripple placement="left" errorNoChild>
+                  {status ? "on" : "off"}
+                </Progress>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </CustomTable>
+  </Loading>
 )

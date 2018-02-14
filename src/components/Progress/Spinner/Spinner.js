@@ -16,6 +16,8 @@ export default ({
   placement,
   height,
   width,
+  maxHeight,
+  maxWidth,
 }) => {
   const style = {
     width: `${width}px`,
@@ -35,8 +37,8 @@ export default ({
     > * {
       width: ${iconWidth * 0.8}px;
       height: ${iconHeight * 0.8}px;
-      max-width: 100px;
-      max-height: 100px;
+      max-width: ${maxHeight}px;
+      max-height: ${maxHeight}px;
     }
   `
 

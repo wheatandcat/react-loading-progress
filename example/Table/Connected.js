@@ -6,13 +6,16 @@ import Board from "./Board"
 
 const Root = styled.div`
   width: 100%;
-  height: 100%;
+  height: 400px;
 `
 
 export default class extends Component {
   state = {
     items: null,
     loading: true,
+    updateState: false,
+    error: false,
+    errorUpdateState: false,
   }
   componentDidMount() {
     setTimeout(this.setItem, 2000)
@@ -20,6 +23,7 @@ export default class extends Component {
 
   onAdd = () => {
     this.setState({
+      error: false,
       loading: true,
     })
 
@@ -36,9 +40,27 @@ export default class extends Component {
         {
           id: items.length + 1,
           name: "add item",
-          status: "on",
+          status: true,
         },
       ],
+    })
+  }
+
+  onError = () => {
+    this.setState({
+      error: false,
+      loading: true,
+    })
+
+    setTimeout(this.errorItem, 2000)
+  }
+
+  errorItem = () => {
+    const items = this.state.items
+
+    this.setState({
+      error: true,
+      loading: false,
     })
   }
 
@@ -47,12 +69,12 @@ export default class extends Component {
       {
         id: 1,
         name: "foo",
-        status: "on",
+        status: true,
       },
       {
         id: 2,
         name: "bar",
-        status: "on",
+        status: true,
       },
     ]
 
@@ -62,23 +84,62 @@ export default class extends Component {
     })
   }
 
-  render() {
-    if (this.state.items === null) {
-      return (
-        <Root>
-          <Loading loading={this.state.loading}>
-            <Progress size={0.5} />
-          </Loading>
-        </Root>
-      )
-    }
+  onUpdate = () => {
+    this.setState({
+      errorUpdateState: false,
+      updateState: true,
+    })
 
+    setTimeout(this.updateItem, 2000)
+  }
+
+  updateItem = () => {
+    const items = this.state.items
+
+    this.setState({
+      updateState: false,
+      items: items.map(item => ({
+        ...item,
+        status: !item.status,
+      })),
+    })
+  }
+
+  onUpdateError = () => {
+    this.setState({
+      updateState: true,
+    })
+
+    setTimeout(this.errorUpdateItem, 2000)
+  }
+
+  errorUpdateItem = () => {
+    const items = this.state.items
+
+    this.setState({
+      errorUpdateState: true,
+      updateState: false,
+    })
+  }
+
+  render() {
     return (
       <Root>
-        <Loading loading={this.state.loading}>
-          <Board onAdd={this.onAdd}>
-            <Progress>
-              <Table items={this.state.items} />
+        <Loading loading={this.state.loading} error={this.state.error}>
+          <Board
+            onAdd={this.onAdd}
+            onUpdate={this.onUpdate}
+            onError={this.onError}
+            onUpdateError={this.onUpdateError}
+          >
+            <Progress errorText={<h2>Error : Failed to load page!!</h2>}>
+              {this.state.items !== null ? (
+                <Table
+                  items={this.state.items}
+                  updateState={this.state.updateState}
+                  errorUpdateState={this.state.errorUpdateState}
+                />
+              ) : null}
             </Progress>
           </Board>
         </Loading>

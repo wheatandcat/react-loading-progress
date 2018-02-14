@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "parcel ./example/index.html",
+    "examole-build": "parcel build ./example/index.html",
     "build": "run-s build:*",
     "build:init": "rm -rf dist && mkdir dist",
     "build:js": "babel src --out-dir dist",
