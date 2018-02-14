@@ -1,0 +1,10 @@
+src/
+example/
+.storybook/
+doc/
+storybook-static/
+.prettierrc
+examples/
+.cache
+.babelrc
+examples-dist/
