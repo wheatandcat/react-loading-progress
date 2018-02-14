@@ -1,11 +1,11 @@
 {
   "name": "react-loading-progress",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "react loading progress",
   "main": "dist/index.js",
   "scripts": {
     "start": "parcel ./example/index.html",
-    "examole-build": "parcel build ./example/index.html",
+    "examole-build": "parcel build ./example/index.html -d ./examples-dist",
     "build": "run-s build:*",
     "build:init": "rm -rf dist && mkdir dist",
     "build:js": "babel src --out-dir dist",
