@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "material-ui/Button"
-import Loading, { Progress } from "../../src/"
+import Loading, { Progress } from "../../dist/"
 
 const CustomTable = styled.div`
   table {

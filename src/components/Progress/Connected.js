@@ -95,7 +95,7 @@ export default class extends Component {
   }
 
   changeRoot = async () => {
-    const root = await ReactDOM.findDOMNode(this.refs.root)
+    const root = await ReactDOM.findDOMNode(this.root)
     if (!root) {
       return
     }
@@ -111,7 +111,7 @@ export default class extends Component {
   }
 
   changeState = async () => {
-    const main = await ReactDOM.findDOMNode(this.refs.main)
+    const main = await ReactDOM.findDOMNode(this.main)
     if (!main) {
       return
     }
@@ -172,7 +172,7 @@ export default class extends Component {
               ) : null
             }
           >
-            <div ref="main">{this.props.children}</div>
+            <div ref={node => (this.main = node)}>{this.props.children}</div>
           </Err>
         )
       }
@@ -187,7 +187,7 @@ export default class extends Component {
             />
           ) : null}
 
-          <div ref="main">{this.props.children}</div>
+          <div ref={node => (this.main = node)}>{this.props.children}</div>
         </Fragment>
       )
     }
@@ -207,7 +207,7 @@ export default class extends Component {
         />
         {!this.props.noChild ? (
           <div
-            ref="main"
+            ref={node => (this.main = node)}
             style={{
               opacity: "0.25",
               zIndex: 1,
@@ -230,7 +230,7 @@ export default class extends Component {
   render() {
     if (this.props.mask) {
       return (
-        <Root ref="root">
+        <Root ref={node => (this.root = node)}>
           <Fade
             width={this.state.width}
             height={this.state.height}
@@ -242,6 +242,6 @@ export default class extends Component {
       )
     }
 
-    return <Root ref="root">{this.content()}</Root>
+    return <Root ref={node => (this.root = node)}>{this.content()}</Root>
   }
 }
