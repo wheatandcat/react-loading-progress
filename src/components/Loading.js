@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import SpinnerSvg from "./Spinner.svg"
+import Spinner from "./Spinner"
 
 export default class extends Component {
   static defaultProps = {
@@ -39,7 +39,7 @@ export default class extends Component {
 
   getIcon = () => {
     if (this.props.icon === null) {
-      return <img src={SpinnerSvg} alt="loading" />
+      return <Spinner />
     }
 
     return this.props.icon

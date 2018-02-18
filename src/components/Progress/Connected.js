@@ -5,7 +5,7 @@ import styled, { css } from "styled-components"
 import Ripple from "../Ripple"
 import Fade from "../Fade"
 import Err from "../Error"
-import Update from "../Update.svg"
+import Update from "../Update"
 import Spinner from "./Spinner/Connected"
 import DefaultSpinner from "./DefaultSpinner"
 
@@ -88,7 +88,7 @@ export default class extends Component {
 
   getIcon = () => {
     if (this.props.update) {
-      return <img src={Update} alt="update" />
+      return <Update />
     }
 
     return this.context.icon()

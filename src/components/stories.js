@@ -10,6 +10,7 @@ import Fade from "./Fade"
 import Rolling from "./Rolling.svg"
 import Bubble from "./Bubble.svg"
 import Fountain from "./Fountain.svg"
+import Spinner from "./Spinner"
 
 const CustomTable = styled.div`
   table {
@@ -40,6 +41,14 @@ const CustomTable = styled.div`
     }
   }
 `
+
+
+storiesOf("Icon", module)
+  .addDecorator(withKnobs)
+  .add("Spinner", () => (
+    <Spinner />
+  ))
+
 
 storiesOf("Fade", module)
   .addDecorator(withKnobs)

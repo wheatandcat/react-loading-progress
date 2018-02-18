@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "material-ui/Button"
-import Table, { Thead, Tbody, Tr, Th, Td } from "react-row-select-table"
 import Loading, { Progress } from "../../src/"
 
 const CustomTable = styled.div`
