@@ -1,4 +1,3 @@
 {
-  "presets": ["react-app"],
-  "plugins": ["transform-es3-property-literals"]
+  "presets": ["react-app"]
 }

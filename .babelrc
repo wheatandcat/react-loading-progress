@@ -1,5 +1,4 @@
 {
-  "presets": ["react-app"],
-  "plugins": ["transform-es3-property-literals"],
-  "ignore": ["src/components/stories.js"]
+  "presets": ["react-app", "stage-1"],
+  "plugins": ["transform-class-properties"]
 }
