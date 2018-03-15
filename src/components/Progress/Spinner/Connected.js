@@ -13,6 +13,7 @@ export default class extends Component {
     width: null,
     maxHeight: 100,
     maxWidth: 100,
+    center: false,
   }
 
   static propTypes = {
@@ -25,6 +26,7 @@ export default class extends Component {
     width: PropTypes.number,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
+    center: PropTypes.bool,
   }
 
   render() {
@@ -47,6 +49,7 @@ export default class extends Component {
         width={this.props.width}
         maxHeight={this.props.maxHeight}
         maxWidth={this.props.maxWidth}
+        center={this.props.center}
       />
     )
   }

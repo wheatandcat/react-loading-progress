@@ -11,6 +11,7 @@ import Rolling from "./Rolling.svg"
 import Bubble from "./Bubble.svg"
 import Fountain from "./Fountain.svg"
 import Spinner from "./Spinner"
+import { ProgressItem, ProgressUpdateItem, DefaultProgress } from "./Customize"
 
 const CustomTable = styled.div`
   table {
@@ -42,13 +43,13 @@ const CustomTable = styled.div`
   }
 `
 
+storiesOf("Customize", module)
+  .addDecorator(withKnobs)
+  .add("DefaultProgress", () => <DefaultProgress />)
 
 storiesOf("Icon", module)
   .addDecorator(withKnobs)
-  .add("Spinner", () => (
-    <Spinner />
-  ))
-
+  .add("Spinner", () => <Spinner />)
 
 storiesOf("Fade", module)
   .addDecorator(withKnobs)
@@ -174,6 +175,7 @@ storiesOf("Loading", module)
                   placement="left"
                   errorNoChild
                   errorText="Error!! update"
+                  center
                 >
                   foo
                 </Progress>
@@ -187,6 +189,7 @@ storiesOf("Loading", module)
                   placement="left"
                   errorNoChild
                   errorText="Error!! update"
+                  center
                 >
                   bar
                 </Progress>
@@ -213,18 +216,14 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left" noChild>
-                  foo
-                </Progress>
+                <ProgressItem>foo</ProgressItem>
               </td>
               <td>baz</td>
             </tr>
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left" noChild>
-                  bar
-                </Progress>
+                <ProgressItem>bar</ProgressItem>
               </td>
               <td>baz</td>
             </tr>
@@ -248,18 +247,14 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left" noChild ripple>
-                  foo
-                </Progress>
+                <ProgressItem ripple>foo</ProgressItem>
               </td>
               <td>baz</td>
             </tr>
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left" noChild ripple>
-                  bar
-                </Progress>
+                <ProgressItem ripple>bar</ProgressItem>
               </td>
               <td>baz</td>
             </tr>
@@ -283,18 +278,14 @@ storiesOf("Loading", module)
             <tr>
               <td>1</td>
               <td>
-                <Progress placement="left" noChild update ripple>
-                  foo
-                </Progress>
+                <ProgressUpdateItem ripple>foo</ProgressUpdateItem>
               </td>
               <td>baz</td>
             </tr>
             <tr>
               <td>2</td>
               <td>
-                <Progress placement="left" noChild update ripple>
-                  bar
-                </Progress>
+                <ProgressUpdateItem ripple>bar</ProgressUpdateItem>
               </td>
               <td>baz</td>
             </tr>
@@ -307,7 +298,7 @@ storiesOf("Loading", module)
     <div
       style={{
         width: "600px",
-        height: "200px",
+        height: "1200px",
         border: "medium solid #eee",
       }}
     >

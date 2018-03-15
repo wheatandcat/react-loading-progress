@@ -43,6 +43,7 @@ export default class extends Component {
     maxWidth: 100,
     ripple: false,
     update: false,
+    center: false,
   }
 
   static propTypes = {
@@ -58,6 +59,7 @@ export default class extends Component {
     maxWidth: PropTypes.number,
     ripple: PropTypes.bool,
     update: PropTypes.bool,
+    center: PropTypes.bool,
   }
 
   static contextTypes = {
@@ -151,6 +153,7 @@ export default class extends Component {
           iconWidthSize={this.props.widthSize}
           maxHeight={this.props.maxHeight}
           maxWidth={this.props.maxWidth}
+          center={this.props.center}
         />
       )
     }
@@ -204,6 +207,7 @@ export default class extends Component {
           width={this.state.width}
           maxHeight={this.props.maxHeight}
           maxWidth={this.props.maxWidth}
+          center={this.props.center}
         />
         {!this.props.noChild ? (
           <div

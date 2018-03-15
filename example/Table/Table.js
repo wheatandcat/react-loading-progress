@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "material-ui/Button"
-import Loading, { Progress } from "../../dist/"
+import Loading, { ProgressUpdateItem } from "../../dist/"
 
 const CustomTable = styled.div`
   table {
@@ -49,9 +49,7 @@ export default ({ items, updateState, errorUpdateState }) => (
               <td>{id}</td>
               <td>{name}</td>
               <td>
-                <Progress noChild update ripple placement="left" errorNoChild>
-                  {status ? "on" : "off"}
-                </Progress>
+                <ProgressUpdateItem>{status ? "on" : "off"}</ProgressUpdateItem>
               </td>
             </tr>
           ))}

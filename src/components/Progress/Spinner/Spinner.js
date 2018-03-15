@@ -1,10 +1,18 @@
 import React from "react"
 import styled from "styled-components"
 
-const Load = styled.div`
+const Center = styled.div`
   display: flex;
   justify-content: ${props => props.placement};
   align-items: center;
+  position: absolute;
+  z-index: 2;
+`
+
+const Top = styled.div`
+  display: flex;
+  justify-content: ${props => props.placement};
+  padding-top: 0.5rem;
   position: absolute;
   z-index: 2;
 `
@@ -18,6 +26,7 @@ export default ({
   width,
   maxHeight,
   maxWidth,
+  center,
 }) => {
   const style = {
     width: `${width}px`,
@@ -29,7 +38,7 @@ export default ({
     height: `${iconHeight}px`,
   }
 
-  const Icon = styled.div`
+  const CenterIcon = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,10 +46,26 @@ export default ({
     > * {
       width: ${iconWidth * 0.8}px;
       height: ${iconHeight * 0.8}px;
-      max-width: ${maxHeight}px;
-      max-height: ${maxHeight}px;
+      max-width: 50px;
+      max-height: 50px;
     }
   `
+
+  const TopIcon = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      width: ${iconWidth * 0.8}px;
+      height: ${iconHeight * 0.8}px;
+      max-width: 50px;
+      max-height: 50px;
+    }
+  `
+
+  const Load = center ? Center : Top
+  const Icon = center ? CenterIcon : TopIcon
 
   return (
     <Load style={style} placement={placement}>
