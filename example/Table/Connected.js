@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import Loading from "../../dist/"
+import Loading from "../../src/"
 import Table from "./Table"
 import Board from "./Board"
 
 const Root = styled.div`
   width: 100%;
-  height: 400px;
 `
 
 export default class extends Component {

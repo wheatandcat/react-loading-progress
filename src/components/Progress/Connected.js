@@ -9,10 +9,7 @@ import Update from "../Update"
 import Spinner from "./Spinner/Connected"
 import DefaultSpinner from "./DefaultSpinner"
 
-const Root = styled.div`
-  height: 100%;
-  height: 100%;
-`
+const Root = styled.div``
 
 const Main = styled.div`
   opacity: 0.25;
@@ -70,7 +67,6 @@ export default class extends Component {
 
   componentDidMount() {
     this.changeRoot()
-    this.changeState()
   }
 
   componentWillReceiveProps() {
@@ -85,7 +81,6 @@ export default class extends Component {
     }
 
     this.changeRoot()
-    this.changeState()
   }
 
   getIcon = () => {
@@ -98,6 +93,8 @@ export default class extends Component {
 
   changeRoot = async () => {
     const root = await ReactDOM.findDOMNode(this.root)
+    console.log(root)
+    console.log(root.offsetHeight)
     if (!root) {
       return
     }
@@ -107,24 +104,10 @@ export default class extends Component {
     }
 
     this.setState({
+      height: root.offsetHeight,
+      width: root.offsetWidth,
       rootHeight: root.offsetHeight,
       rootWidth: root.offsetWidth,
-    })
-  }
-
-  changeState = async () => {
-    const main = await ReactDOM.findDOMNode(this.main)
-    if (!main) {
-      return
-    }
-
-    if (main.offsetHeight === 0 || main.offsetWidth === 0) {
-      return
-    }
-
-    this.setState({
-      height: main.offsetHeight,
-      width: main.offsetWidth,
     })
   }
 
@@ -220,32 +203,27 @@ export default class extends Component {
             {this.props.children}
           </div>
         ) : (
-          <div
-            style={{
-              width: "0px",
-              height: `${this.state.height}px`,
-            }}
-          />
+          <div style={{}} />
         )}
       </Fragment>
     )
   }
 
   render() {
-    if (this.props.mask) {
-      return (
-        <Root ref={node => (this.root = node)}>
-          <Fade
-            width={this.state.width}
-            height={this.state.height}
-            fadeOut={!this.context.isLoad()}
-          >
-            {this.content()}
-          </Fade>
-        </Root>
+    let contents = this.content()
+
+    if (this.props.mask && this.context.isLoad()) {
+      contents = (
+        <Fade
+          width={this.state.width}
+          height={this.state.height}
+          fadeOut={!this.context.isLoad()}
+        >
+          {this.content()}
+        </Fade>
       )
     }
 
-    return <Root ref={node => (this.root = node)}>{this.content()}</Root>
+    return <Root ref={node => (this.root = node)}>{contents}</Root>
   }
 }

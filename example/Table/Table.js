@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "material-ui/Button"
-import { Loading, ProgressUpdateItem } from "../../dist/"
+import { Loading, ProgressUpdateItem } from "../../src/"
 
 const CustomTable = styled.div`
   table {
@@ -33,28 +33,24 @@ const CustomTable = styled.div`
   }
 `
 export default ({ items, updateState, errorUpdateState }) => (
-  <Loading loading={updateState} error={errorUpdateState}>
-    <CustomTable>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>status</th>
+  <CustomTable>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map(({ id, name, status }) => (
+          <tr key={id}>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{status ? "on" : "off"}</td>
           </tr>
-        </thead>
-        <tbody>
-          {items.map(({ id, name, status }) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>
-                <ProgressUpdateItem>{status ? "on" : "off"}</ProgressUpdateItem>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </CustomTable>
-  </Loading>
+        ))}
+      </tbody>
+    </table>
+  </CustomTable>
 )

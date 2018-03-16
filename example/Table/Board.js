@@ -6,6 +6,8 @@ import Divider from "material-ui/Divider"
 
 const Paper = styled(MuiPaper)`
   padding: 1rem;
+  height: auto;
+  min-height: 100%;
 `
 
 const Button = styled(MuiButton)`

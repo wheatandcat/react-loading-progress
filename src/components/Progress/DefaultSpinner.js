@@ -30,15 +30,9 @@ export default ({
     return null
   }
 
-  const style = {
-    width: "100%",
-    height: "100%",
-  }
+  const style = {}
 
-  const imageStyle = {
-    width: "100%",
-    height: "100%",
-  }
+  const imageStyle = {}
 
   const size = width > height ? height : width
 
