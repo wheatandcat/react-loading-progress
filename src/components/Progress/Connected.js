@@ -32,7 +32,7 @@ export default class extends Component {
 
   static defaultProps = {
     placement: "center",
-    mask: false,
+    mask: true,
     noChild: false,
     errorNoChild: false,
     errorText: "",
@@ -43,7 +43,7 @@ export default class extends Component {
     maxWidth: 100,
     ripple: false,
     update: false,
-    center: false,
+    center: true,
   }
 
   static propTypes = {

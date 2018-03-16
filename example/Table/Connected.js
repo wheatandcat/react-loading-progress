@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import Loading, { Progress } from "../../dist/"
+import Loading from "../../dist/"
 import Table from "./Table"
 import Board from "./Board"
 
@@ -125,24 +125,22 @@ export default class extends Component {
   render() {
     return (
       <Root>
-        <Loading loading={this.state.loading} error={this.state.error}>
-          <Board
-            onAdd={this.onAdd}
-            onUpdate={this.onUpdate}
-            onError={this.onError}
-            onUpdateError={this.onUpdateError}
-          >
-            <Progress errorText={<h2>Error : Failed to load page!!</h2>}>
-              {this.state.items !== null ? (
-                <Table
-                  items={this.state.items}
-                  updateState={this.state.updateState}
-                  errorUpdateState={this.state.errorUpdateState}
-                />
-              ) : null}
-            </Progress>
-          </Board>
-        </Loading>
+        <Board
+          onAdd={this.onAdd}
+          onUpdate={this.onUpdate}
+          onError={this.onError}
+          onUpdateError={this.onUpdateError}
+        >
+          <Loading loading={this.state.loading} error={this.state.error}>
+            {this.state.items !== null ? (
+              <Table
+                items={this.state.items}
+                updateState={this.state.updateState}
+                errorUpdateState={this.state.errorUpdateState}
+              />
+            ) : null}
+          </Loading>
+        </Board>
       </Root>
     )
   }

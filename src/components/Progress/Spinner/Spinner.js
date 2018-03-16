@@ -19,6 +19,7 @@ const Top = styled.div`
 
 export default ({
   component,
+  iconSize,
   iconHeight,
   iconWidth,
   placement,
@@ -44,10 +45,12 @@ export default ({
     align-items: center;
 
     > * {
-      width: ${iconWidth * 0.8}px;
-      height: ${iconHeight * 0.8}px;
-      max-width: 50px;
-      max-height: 50px;
+      width: ${iconWidth * 0.8 * (iconSize || 1.0)}px;
+      height: ${iconHeight * 0.8 * (iconSize || 1.0)}px;
+      min-width: 25px;
+      min-height: 25px;
+      max-width: 150px;
+      max-height: 150px;
     }
   `
 
@@ -57,10 +60,12 @@ export default ({
     align-items: center;
 
     > * {
-      width: ${iconWidth * 0.8}px;
-      height: ${iconHeight * 0.8}px;
-      max-width: 50px;
-      max-height: 50px;
+      width: ${iconWidth * 0.8 * (iconSize || 1.0)}px;
+      height: ${iconHeight * 0.8 * (iconSize || 1.0)}px;
+      min-width: 25px;
+      min-height: 25px;
+      max-width: 150px;
+      max-height: 150px;
     }
   `
 

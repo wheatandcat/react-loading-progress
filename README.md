@@ -15,33 +15,31 @@ npm i react-loading-progress
 ```js
 import React from "react"
 import Button from "material-ui/Button"
-import Loading, { Progress } from "react-loading-progress"
+import Loading from "react-loading-progress"
 
 export default () => (
   <Loading loading={true} error={false}>
-    <Progress>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>foo</td>
-            <td>baz</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>bar</td>
-            <td>baz</td>
-          </tr>
-        </tbody>
-      </table>
-    </Progress>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>foo</td>
+          <td>baz</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>bar</td>
+          <td>baz</td>
+        </tr>
+      </tbody>
+    </table>
   </Loading>
 )
 ```

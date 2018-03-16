@@ -50,8 +50,8 @@ export default ({
     > * {
       width: ${size * iconSize * 0.8 * iconWidthSize}px;
       height: ${size * iconSize * 0.8 * iconHeightSize}px;
-      max-width: 50px;
-      max-height: 50px;
+      max-width: 150px;
+      max-height: 150px;
     }
   `
 
@@ -62,8 +62,8 @@ export default ({
     > * {
       width: ${size * iconSize * 0.8 * iconWidthSize}px;
       height: ${size * iconSize * 0.8 * iconHeightSize}px;
-      max-width: 50px;
-      max-height: 50px;
+      max-width: 150px;
+      max-height: 150px;
     }
   `
 

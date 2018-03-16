@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const Plain = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   transition: opacity 800ms 0s ease;
   position: absolute;
   z-index: 3;
