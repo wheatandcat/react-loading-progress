@@ -12,6 +12,7 @@ const Plain = styled.div`
 class Fade extends Component {
   state = {
     opacity: 0,
+    block: false,
   }
 
   static defaultProps = {
@@ -26,11 +27,25 @@ class Fade extends Component {
     fadeOut: PropTypes.bool.isRequired,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.fadeOut) {
+  componentDidMount() {
+    if (this.props.fadeOut) {
+      setTimeout(() => this.setState({ block: false }), 800)
       this.fadeOut()
     } else {
-      this.fadeIn()
+      this.setState({ block: true })
+      this.fadeOut()
+      setTimeout(() => this.fadeIn(), 10)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fadeOut) {
+      setTimeout(() => this.setState({ block: false }), 800)
+      this.fadeOut()
+    } else {
+      this.setState({ block: true })
+      this.fadeOut()
+      setTimeout(() => this.fadeIn(), 10)
     }
   }
 
@@ -47,10 +62,22 @@ class Fade extends Component {
   }
 
   render() {
+    if (!this.props.mask) {
+      return this.props.children
+    }
+
+    if (this.state.height === 0 && this.state.width === 0) {
+      return this.props.children
+    }
+
     const style = {
       height: `${this.props.height}px`,
       width: `${this.props.width}px`,
       opacity: this.state.opacity,
+    }
+
+    if (!this.state.block) {
+      return this.props.children
     }
 
     return (

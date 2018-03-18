@@ -1,4 +1,4 @@
 {
-  "presets": ["react-app", "stage-1"],
-  "plugins": ["transform-class-properties"]
+  "presets": ["es2015", "react-app"],
+  "plugins": ["rewire"]
 }

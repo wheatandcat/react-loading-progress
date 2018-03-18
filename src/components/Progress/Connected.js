@@ -9,22 +9,15 @@ import Update from "../Update"
 import Spinner from "./Spinner/Connected"
 import DefaultSpinner from "./DefaultSpinner"
 
-const Root = styled.div``
-
-const Main = styled.div`
-  opacity: 0.25;
-  z-index: 1;
-`
-
-var teget = null
+var isLoad = false
 
 export default class extends Component {
   state = {
-    height: 24,
-    width: 24,
+    height: 0,
+    width: 0,
     ripple: false,
-    rootHeight: null,
-    rootWidth: null,
+    rootHeight: 0,
+    rootWidth: 0,
   }
 
   static defaultProps = {
@@ -66,7 +59,7 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    this.changeRoot()
+    setTimeout(() => this.changeRoot(), 10)
   }
 
   componentWillReceiveProps() {
@@ -80,7 +73,21 @@ export default class extends Component {
       return
     }
 
-    this.changeRoot()
+    setTimeout(() => this.changeRoot(), 50)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      this.context.isLoad() === isLoad &&
+      this.state.height === nextState.height &&
+      this.state.width === nextState.width
+    ) {
+      return false
+    }
+
+    isLoad = this.context.isLoad()
+
+    return true
   }
 
   getIcon = () => {
@@ -92,9 +99,11 @@ export default class extends Component {
   }
 
   changeRoot = async () => {
+    if (this.context.isLoad()) {
+      setTimeout(() => this.changeRoot(), 50)
+    }
+
     const root = await ReactDOM.findDOMNode(this.root)
-    console.log(root)
-    console.log(root.offsetHeight)
     if (!root) {
       return
     }
@@ -158,7 +167,7 @@ export default class extends Component {
               ) : null
             }
           >
-            <div ref={node => (this.main = node)}>{this.props.children}</div>
+            {this.props.children}
           </Err>
         )
       }
@@ -173,7 +182,7 @@ export default class extends Component {
             />
           ) : null}
 
-          <div ref={node => (this.main = node)}>{this.props.children}</div>
+          {this.props.children}
         </Fragment>
       )
     }
@@ -194,7 +203,6 @@ export default class extends Component {
         />
         {!this.props.noChild ? (
           <div
-            ref={node => (this.main = node)}
             style={{
               opacity: "0.25",
               zIndex: 1,
@@ -203,27 +211,24 @@ export default class extends Component {
             {this.props.children}
           </div>
         ) : (
-          <div style={{}} />
+          <div />
         )}
       </Fragment>
     )
   }
 
   render() {
-    let contents = this.content()
-
-    if (this.props.mask && this.context.isLoad()) {
-      contents = (
+    return (
+      <div ref={node => (this.root = node)}>
         <Fade
+          mask={this.props.mask}
           width={this.state.width}
           height={this.state.height}
           fadeOut={!this.context.isLoad()}
         >
           {this.content()}
         </Fade>
-      )
-    }
-
-    return <Root ref={node => (this.root = node)}>{contents}</Root>
+      </div>
+    )
   }
 }

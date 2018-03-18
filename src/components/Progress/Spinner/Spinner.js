@@ -69,6 +69,10 @@ export default ({
     }
   `
 
+  if (height === 0 && width === 0) {
+    return null
+  }
+
   const Load = center ? Center : Top
   const Icon = center ? CenterIcon : TopIcon
 

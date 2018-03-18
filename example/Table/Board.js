@@ -1,16 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import MuiButton from "material-ui/Button"
-import MuiPaper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
 
-const Paper = styled(MuiPaper)`
+const Paper = styled.div`
   padding: 1rem;
   height: auto;
   min-height: 100%;
 `
 
-const Button = styled(MuiButton)`
+const Button = styled.button`
   margin: 1rem !important;
 `
 
@@ -31,7 +28,7 @@ export default ({ children, onAdd, onUpdate, onError, onUpdateError }) => (
     <Button variant="raised" onClick={onUpdateError}>
       update status Error!!
     </Button>
-    <Divider />
+    <hr />
     {children}
   </Paper>
 )

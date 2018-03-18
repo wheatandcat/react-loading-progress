@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import Loading from "../../src/"
+import Loading from "../../dist/"
 import Table from "./Table"
 import Board from "./Board"
 
