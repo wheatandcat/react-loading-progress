@@ -133,58 +133,25 @@ export default class extends Component {
   }
 
   content = () => {
-    if (this.context.isLoad() && !this.props.children) {
-      return (
-        <DefaultSpinner
-          component={this.getIcon()}
-          placement={this.getPlacement(this.props.placement)}
-          width={this.state.rootWidth}
-          height={this.state.rootHeight}
-          iconSize={this.props.size}
-          iconHeightSize={this.props.heightSize}
-          iconWidthSize={this.props.widthSize}
-          maxHeight={this.props.maxHeight}
-          maxWidth={this.props.maxWidth}
-          center={this.props.center}
-        />
-      )
-    }
-
     if (!this.context.isLoad()) {
-      if (this.context.isError()) {
+      if (this.props.children) {
+        return this.props.children
+      } else {
         return (
-          <Err
-            errorNoChild={this.props.errorNoChild}
-            errorText={this.props.errorText}
-            ripple={
-              this.state.ripple ? (
-                <Ripple
-                  width={this.state.width}
-                  height={this.state.height}
-                  placement={this.getPlacement(this.props.placement)}
-                  error
-                />
-              ) : null
-            }
-          >
-            {this.props.children}
-          </Err>
+          <DefaultSpinner
+            component={this.getIcon()}
+            placement={this.getPlacement(this.props.placement)}
+            width={this.state.rootWidth}
+            height={this.state.rootHeight}
+            iconSize={this.props.size}
+            iconHeightSize={this.props.heightSize}
+            iconWidthSize={this.props.widthSize}
+            maxHeight={this.props.maxHeight}
+            maxWidth={this.props.maxWidth}
+            center={this.props.center}
+          />
         )
       }
-
-      return (
-        <Fragment>
-          {this.state.ripple ? (
-            <Ripple
-              width={this.state.width}
-              height={this.state.height}
-              placement={this.getPlacement(this.props.placement)}
-            />
-          ) : null}
-
-          {this.props.children}
-        </Fragment>
-      )
     }
 
     return (

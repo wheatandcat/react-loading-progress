@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import Loading from "../../dist/"
+import Loading from "../../src/"
 import Table from "./Table"
 import Board from "./Board"
 
@@ -16,8 +16,19 @@ export default class extends Component {
     error: false,
     errorUpdateState: false,
   }
+
   componentDidMount() {
     setTimeout(this.setItem, 2000)
+  }
+
+  onRandom = async () => {
+    const items = await this.state.items.map(item => ({
+      id: Math.ceil((Math.random() + 1) * 5),
+      name: "add item",
+      status: true,
+    }))
+
+    this.setState({ items })
   }
 
   onAdd = () => {
@@ -129,6 +140,7 @@ export default class extends Component {
           onUpdate={this.onUpdate}
           onError={this.onError}
           onUpdateError={this.onUpdateError}
+          onRandom={this.onRandom}
         >
           <Loading loading={this.state.loading} error={this.state.error}>
             {this.state.items !== null ? (

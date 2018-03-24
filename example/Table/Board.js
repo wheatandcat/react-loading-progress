@@ -11,8 +11,19 @@ const Button = styled.button`
   margin: 1rem !important;
 `
 
-export default ({ children, onAdd, onUpdate, onError, onUpdateError }) => (
+export default ({
+  children,
+  onAdd,
+  onUpdate,
+  onError,
+  onUpdateError,
+  onRandom,
+}) => (
   <Paper>
+    <Button variant="raised" onClick={onRandom}>
+      data random
+    </Button>
+
     <Button variant="raised" color="secondary" onClick={onAdd}>
       add item
     </Button>

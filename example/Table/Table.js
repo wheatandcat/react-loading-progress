@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { Loading, ProgressUpdateItem } from "../../dist/"
+import { Loading, ProgressUpdateItem } from "../../src/"
+import GetValue from "./GetValue/Connected"
 
 const CustomTable = styled.div`
   table {
@@ -39,6 +40,7 @@ export default ({ items, updateState, errorUpdateState }) => (
           <th>id</th>
           <th>name</th>
           <th>status</th>
+          <th>value</th>
         </tr>
       </thead>
       <tbody>
@@ -47,6 +49,9 @@ export default ({ items, updateState, errorUpdateState }) => (
             <td>{id}</td>
             <td>{name}</td>
             <td>{status ? "on" : "off"}</td>
+            <td>
+              <GetValue />
+            </td>
           </tr>
         ))}
       </tbody>
