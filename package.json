@@ -1,6 +1,6 @@
 {
   "name": "react-loading-progress",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Loading display components",
   "main": "dist/index.js",
   "scripts": {
