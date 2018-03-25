@@ -35,9 +35,9 @@ export default class extends Component {
     }
 
     const size =
-      this.props.width > this.props.height
+      (this.props.width > this.props.height
         ? this.props.height
-        : this.props.width
+        : this.props.width) || 1
 
     return (
       <Spinner

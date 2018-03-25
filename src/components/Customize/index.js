@@ -15,6 +15,7 @@ export const ProgressItem = ({ children, ...props }) => (
     {...props}
     mask={false}
     size={2}
+    ripple
   >
     {children}
   </Progress>
@@ -30,6 +31,7 @@ export const ProgressUpdateItem = ({ children, ...props }) => (
     errorNoChild
     {...props}
     mask={false}
+    ripple
   >
     {children}
   </Progress>

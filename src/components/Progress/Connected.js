@@ -9,8 +9,6 @@ import Update from "../Update"
 import Spinner from "./Spinner/Connected"
 import DefaultSpinner from "./DefaultSpinner"
 
-var isLoad = false
-
 export default class extends Component {
   state = {
     height: 0,
@@ -18,6 +16,7 @@ export default class extends Component {
     ripple: false,
     rootHeight: 0,
     rootWidth: 0,
+    isLoad: null,
   }
 
   static defaultProps = {
@@ -78,14 +77,25 @@ export default class extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (
-      this.context.isLoad() === isLoad &&
+      this.context.isLoad() !== this.state.isLoad ||
+      nextProps.children !== this.props.children
+    ) {
+      this.setState({
+        isLoad: this.context.isLoad(),
+      })
+      return true
+    }
+
+    if (
       this.state.height === nextState.height &&
       this.state.width === nextState.width
     ) {
       return false
     }
 
-    isLoad = this.context.isLoad()
+    this.setState({
+      isLoad: this.context.isLoad(),
+    })
 
     return true
   }
@@ -133,25 +143,58 @@ export default class extends Component {
   }
 
   content = () => {
+    if (this.context.isLoad() && !this.props.children) {
+      return (
+        <DefaultSpinner
+          component={this.getIcon()}
+          placement={this.getPlacement(this.props.placement)}
+          width={this.state.rootWidth}
+          height={this.state.rootHeight}
+          iconSize={this.props.size}
+          iconHeightSize={this.props.heightSize}
+          iconWidthSize={this.props.widthSize}
+          maxHeight={this.props.maxHeight}
+          maxWidth={this.props.maxWidth}
+          center={this.props.center}
+        />
+      )
+    }
+
     if (!this.context.isLoad()) {
-      if (this.props.children) {
-        return this.props.children
-      } else {
+      if (this.context.isError()) {
         return (
-          <DefaultSpinner
-            component={this.getIcon()}
-            placement={this.getPlacement(this.props.placement)}
-            width={this.state.rootWidth}
-            height={this.state.rootHeight}
-            iconSize={this.props.size}
-            iconHeightSize={this.props.heightSize}
-            iconWidthSize={this.props.widthSize}
-            maxHeight={this.props.maxHeight}
-            maxWidth={this.props.maxWidth}
-            center={this.props.center}
-          />
+          <Err
+            errorNoChild={this.props.errorNoChild}
+            errorText={this.props.errorText}
+            ripple={
+              this.state.ripple ? (
+                <Ripple
+                  width={this.state.width}
+                  height={this.state.height}
+                  placement={this.getPlacement(this.props.placement)}
+                  error
+                />
+              ) : null
+            }
+          >
+            {this.props.children}
+          </Err>
         )
       }
+
+      return (
+        <Fragment>
+          {this.state.ripple ? (
+            <Ripple
+              width={this.state.width}
+              height={this.state.height}
+              placement={this.getPlacement(this.props.placement)}
+            />
+          ) : null}
+
+          {this.props.children}
+        </Fragment>
+      )
     }
 
     return (

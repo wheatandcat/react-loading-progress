@@ -33,28 +33,32 @@ const CustomTable = styled.div`
   }
 `
 export default ({ items, updateState, errorUpdateState }) => (
-  <CustomTable>
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>status</th>
-          <th>value</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map(({ id, name, status }) => (
-          <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{status ? "on" : "off"}</td>
-            <td>
-              <GetValue />
-            </td>
+  <Loading loading={updateState}>
+    <CustomTable>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>status</th>
+            <th>value</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </CustomTable>
+        </thead>
+        <tbody>
+          {items.map(({ id, name, status }) => (
+            <tr key={`${id}_${name}`}>
+              <td>{id}</td>
+              <td>{name}</td>
+              <td>
+                <ProgressUpdateItem>{status ? "on" : "off"}</ProgressUpdateItem>
+              </td>
+              <td>
+                <GetValue />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </CustomTable>
+  </Loading>
 )

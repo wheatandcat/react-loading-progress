@@ -30,8 +30,8 @@ export default ({
   center,
 }) => {
   const style = {
-    width: `${width}px`,
-    height: `${height}px`,
+    width: `${width < 30 ? 0 : width}px`,
+    height: `${height < 30 ? 0 : height}px`,
   }
 
   const imageStyle = {
@@ -47,8 +47,8 @@ export default ({
     > * {
       width: ${iconWidth * 0.8 * (iconSize || 1.0)}px;
       height: ${iconHeight * 0.8 * (iconSize || 1.0)}px;
-      min-width: 25px;
-      min-height: 25px;
+      min-width: 30px;
+      min-height: 30px;
       max-width: 150px;
       max-height: 150px;
     }
@@ -62,16 +62,12 @@ export default ({
     > * {
       width: ${iconWidth * 0.8 * (iconSize || 1.0)}px;
       height: ${iconHeight * 0.8 * (iconSize || 1.0)}px;
-      min-width: 25px;
-      min-height: 25px;
+      min-width: 30px;
+      min-height: 30px;
       max-width: 150px;
       max-height: 150px;
     }
   `
-
-  if (height === 0 && width === 0) {
-    return null
-  }
 
   const Load = center ? Center : Top
   const Icon = center ? CenterIcon : TopIcon

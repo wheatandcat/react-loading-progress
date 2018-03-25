@@ -8,11 +8,6 @@ const Default = styled.div`
 `
 
 export default ({ children, loading, ...props }) => {
-  /*
-  if (!loading) {
-    return children
-  }
-*/
   if (!children) {
     return (
       <Loading loading={loading} {...props}>

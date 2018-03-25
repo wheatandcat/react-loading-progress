@@ -23,9 +23,8 @@ export default class extends Component {
 
   onRandom = async () => {
     const items = await this.state.items.map(item => ({
+      ...item,
       id: Math.ceil((Math.random() + 1) * 5),
-      name: "add item",
-      status: true,
     }))
 
     this.setState({ items })
