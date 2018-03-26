@@ -74,6 +74,7 @@ class Fade extends Component {
       height: `${this.props.height}px`,
       width: `${this.props.width}px`,
       opacity: this.state.opacity,
+      visibility: "hidden",
     }
 
     if (!this.state.block) {
